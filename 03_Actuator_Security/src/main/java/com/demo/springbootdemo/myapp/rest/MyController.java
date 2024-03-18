@@ -11,7 +11,7 @@ public class MyController {
 
     @Value("${team.name}")
     private String tname;
-@GetMapping("/teaminfo")
+    @GetMapping("/teaminfo")
     public String getTeamInfo(){
     return "Coach: " + cname +", Team Name: "+tname;
 }

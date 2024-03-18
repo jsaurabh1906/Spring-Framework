@@ -10,7 +10,7 @@ public class MyController {
     public String sayHello(){
         return "Hello Saurabh!!!";
     }
-
+    //expose a new endpoint
     @GetMapping("/workout")
     public String getDailyWorkout(){
         return "Run fast";
