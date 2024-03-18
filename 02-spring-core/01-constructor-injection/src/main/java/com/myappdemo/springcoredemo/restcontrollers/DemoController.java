@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DemoController {
+    // define a private field for the dependency
     private Coach myCoach;
+
+    //constructor for dependency injection
+    //autowired to tell spring to inject a dependency
     @Autowired
     DemoController(Coach theCoach ){
         myCoach=theCoach;
