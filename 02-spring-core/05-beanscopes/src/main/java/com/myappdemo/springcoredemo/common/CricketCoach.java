@@ -20,3 +20,7 @@ public class CricketCoach implements Coach{
     }
 
 }
+
+
+// by default beanscope is singleton where  all dependency injections for the bean will reference the same bean
+// for scope= prototype separate references will be created (new object instance for each injection)

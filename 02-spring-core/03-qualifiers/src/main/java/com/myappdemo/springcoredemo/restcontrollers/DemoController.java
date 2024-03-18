@@ -10,17 +10,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
     private Coach myCoach;
 /*
-//Qualifier has highest priority as compared to primary annotation
-    //constructor injection with qualifier
+
+
+ //Qualifier has highest priority as compared to primary annotation
+
+
+   //constructor injection with qualifier
     @Autowired
     public DemoController( @Qualifier("baseballCoach") Coach theCoach){
         myCoach=theCoach;
     }
 
 */
+
+
 //constructor injection with primary annotation used
 @Autowired
-public DemoController(  Coach theCoach){
+public DemoController(Coach theCoach){
+
     myCoach=theCoach;
 }
 /*
@@ -28,7 +35,8 @@ public DemoController(  Coach theCoach){
     @Autowired
    public void setCoach(@Qualifier("cricketCoach") Coach theCoach){
         myCoach=theCoach;
-    }*/
+    }
+ */
     @GetMapping("/dailyworkout")
     public String getDailyWorkout(){
         return myCoach.getDailyWorkout();

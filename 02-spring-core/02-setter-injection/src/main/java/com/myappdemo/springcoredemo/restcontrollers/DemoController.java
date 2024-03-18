@@ -11,7 +11,7 @@ public class DemoController {
 
     //setter injection
     @Autowired
-   public void setCoach(Coach theCoach){
+    public void setCoach(Coach theCoach){
         myCoach=theCoach;
     }
     @GetMapping("/dailyworkout")
