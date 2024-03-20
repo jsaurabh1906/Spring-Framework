@@ -19,10 +19,12 @@ import javax.sql.DataSource;
 @Configuration
 public class DemoSecurityConfig {
 
+    // for custom table column names , run the script in mysql available in scripts folder 06-setup-spring-security-demo-database-bcrypt-custom-table-names.sql
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         //define query to retrieve a user by username
+        // "?" parameter value will be the user name from login form
 
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "select user_id , pw , active from members where user_id=?"
@@ -37,12 +39,16 @@ public class DemoSecurityConfig {
         return jdbcUserDetailsManager;
     }
 
+/*
 
-   /*//add support for jdbc
+    //add support for jdbc
+    // for bcrypt run the script file from folder scripts  05-setup-spring-security-demo-database-bcrypt.sql
+    //plain text password run the script file from folder scripts 04-setup-spring-security-demo-database-plaintext.sql
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
         return new JdbcUserDetailsManager(dataSource);
-    }*/
+    }
+*/
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -51,10 +57,10 @@ public class DemoSecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/employees").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET,"/api/employees/**").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.POST,"/api/employees").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.PUT,"/api/employees").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT,"/api/employees/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE,"/api/employees/**").hasRole("ADMIN")
                        );
-                //use HTTP basic configuration
+                //use HTTP basic authentication configuration
         http.httpBasic(Customizer.withDefaults());
 
         //disable Cross site request forgery csrf
@@ -71,7 +77,7 @@ public class DemoSecurityConfig {
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
 
-        UserD       etails saurabh = User.builder()
+        UserDetails saurabh = User.builder()
                 .username("saurabh")
                 .password("{noop}test123")
                 .roles("Employee")
