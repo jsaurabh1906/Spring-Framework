@@ -41,7 +41,8 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO {
 
     @Override
     public Employee save(Employee theEmployee) {
-        //save employee
+        //save or update employee
+        // if id ==0 then insert or save else update
         Employee dbEmp = entityManager.merge(theEmployee);
 
         //return emp

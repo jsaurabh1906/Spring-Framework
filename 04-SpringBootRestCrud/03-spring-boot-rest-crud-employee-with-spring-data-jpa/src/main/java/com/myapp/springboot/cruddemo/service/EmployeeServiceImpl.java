@@ -14,12 +14,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     private EmployeeRepository employeeRepository;
 
+    @Autowired
     public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository){
 
         employeeRepository =theEmployeeRepository;
     }
 
-    @Autowired
+
     @Override
     public List<Employee> findAll(){
         return employeeRepository.findAll();
@@ -28,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee findById(int eid) {
         Optional<Employee> result = employeeRepository.findById(eid);
-        Employee emp=null;
+        Employee emp = null;
         if(result.isPresent()){
             emp=result.get();
         }
@@ -51,3 +52,10 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 
 }
+
+//Optional<Employee> result = employeeRepository.findById(eid);
+//        OPtional is a different pattern instead of having
+//        to check for nulls
+
+//Jpa Repository provides support for @Transactioinal ,
+//no need to add the same...

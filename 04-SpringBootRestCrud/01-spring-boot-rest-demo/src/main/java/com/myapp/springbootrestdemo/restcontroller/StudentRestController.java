@@ -16,7 +16,6 @@ public class StudentRestController {
     private List<Student>  slist;
 
     //define @PostConstruct to load the students data once..
-
     @PostConstruct
     public void loadData(){
         slist= new ArrayList<>();
@@ -33,7 +32,7 @@ public class StudentRestController {
     @GetMapping("/students/{sid}")
     public Student getStudentById(@PathVariable int sid){
 
-        if (sid> slist.size() || sid < 0){
+        if (sid > slist.size() || sid < 0){
             throw new StudentNotFoundException("Student Id Not Found" + sid);
         }
 
@@ -42,3 +41,9 @@ public class StudentRestController {
 
 
 }
+
+/*
+*  Path Variables
+* /api/students/{studId}   ==> to retrieve single student ||| studId ==> pathVariable
+* ex: api/students/1
+* */

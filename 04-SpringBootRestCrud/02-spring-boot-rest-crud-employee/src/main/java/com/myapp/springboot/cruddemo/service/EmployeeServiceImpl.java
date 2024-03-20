@@ -12,11 +12,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     private EmployeeDAO employeeDAO;
 
+    //inject Employee Dao using CI
+
+    @Autowired
     public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO){
         employeeDAO=theEmployeeDAO;
     }
 
-    @Autowired
     @Override
     public List<Employee> findAll(){
         return employeeDAO.findAll();

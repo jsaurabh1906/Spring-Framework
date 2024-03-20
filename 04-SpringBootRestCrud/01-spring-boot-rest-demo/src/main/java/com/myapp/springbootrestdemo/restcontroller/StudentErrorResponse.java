@@ -1,5 +1,7 @@
 package com.myapp.springbootrestdemo.restcontroller;
 
+
+//custom Error response Class
 public class StudentErrorResponse {
     private int status;
     private String message;
