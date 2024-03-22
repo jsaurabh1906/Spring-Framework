@@ -26,7 +26,7 @@ public class DemoSecurityConfig {
                 "select user_id,pw,active from members where user_id=?");
 
         //defune query to retrieve the authorities/roles by username
-        jdbcUserDetailsManager.setUsersByUsernameQuery(
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
                 "select user_id,role from roles where user_id=?");
 
         return jdbcUserDetailsManager;
@@ -85,3 +85,10 @@ public class DemoSecurityConfig {
         return new InMemoryUserDetailsManager(john, mary, susan);
     }*/
  }
+
+ /*
+ * DataSource dataSource : inject data source Auto-configured by spring boot
+ * JdbcUserDetailManager : tell spring security to use JDBC authentication with our data source
+ *
+ *
+ * */
