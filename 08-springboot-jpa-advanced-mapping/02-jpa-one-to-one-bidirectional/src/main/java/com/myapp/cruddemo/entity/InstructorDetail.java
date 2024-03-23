@@ -68,3 +68,11 @@ public class InstructorDetail {
                 '}';
     }
 }
+
+
+/*
+* @OneToOne(mappedBy = "instructorDetail")
+* here instructorDetail refers to instructorDetail property in instructor class
+* more on mapped by : refer image in Help.md
+*
+* */

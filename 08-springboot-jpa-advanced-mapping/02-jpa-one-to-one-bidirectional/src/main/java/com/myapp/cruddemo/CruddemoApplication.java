@@ -26,7 +26,7 @@ public class CruddemoApplication {
 	}
 
 	private void deleteInstructorDetail(InstructorDAO instructorDAO) {
-		int id =3;
+		int id =2;
 		System.out.println("Deleting the Instructor Detail with id: " +id);
 		instructorDAO.deleteInstructorDetailById(id);
 		System.out.println("Deleted!!");
