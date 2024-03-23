@@ -14,11 +14,14 @@ public class CruddemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
+
+	//Commandline runner - executed after the spring beans have been loaded
+	//inject InstructorDAO in commandLineRunner
 	@Bean
 	public CommandLineRunner commandLineRunner(InstructorDAO instructorDAO){
 		return runner->{
-			//createInstructor(instructorDAO);
-			//findInstructor(instructorDAO);
+//			createInstructor(instructorDAO);
+//			findInstructor(instructorDAO);
 			deleteInstructor(instructorDAO);
 		};
 	}
@@ -33,7 +36,7 @@ public class CruddemoApplication {
 
 	private void findInstructor(InstructorDAO instructorDAO) {
 		//
-		int theId=1;
+		int theId=2;
 		System.out.println("Finding instructor id:" + theId);
 
 		Instructor i = instructorDAO.findInstructorById(theId);
@@ -43,14 +46,13 @@ public class CruddemoApplication {
 	}
 
 	private void createInstructor(InstructorDAO instructorDAO) {
-		/*
 		//create the instructor object
 		Instructor i =new Instructor("Saurabh","Jaiswal","ssj@gmail.com");
 
 		//create the instructor detail object
 		InstructorDetail iDetail=new InstructorDetail("abc","instructor");
 
-*/
+/*
 
 		//create the instructor object
 		Instructor i =new Instructor("Shubham","Jaiswal","sj@gmail.com");
@@ -58,6 +60,7 @@ public class CruddemoApplication {
 		//create the instructor detail object
 		InstructorDetail iDetail=new InstructorDetail("xyz","guitar");
 
+*/
 
 
 		//associate the instructor with instructordetail
@@ -71,3 +74,12 @@ public class CruddemoApplication {
 		System.out.println("Done");
 	}
 }
+
+/*
+* Here while saving or creating Instructor,
+* the associated entity is inserted first i.e INstructorDetail
+* and then Instructor is inserted
+*
+* This is due relationship of foreign key.
+* Instructor needs to know the id of the InstructorDetail
+* */

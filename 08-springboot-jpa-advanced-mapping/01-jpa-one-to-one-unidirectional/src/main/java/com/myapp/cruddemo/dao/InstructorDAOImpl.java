@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class InstructorDAOImpl implements InstructorDAO{
     private EntityManager entityManager;
 
+    //inject entity manager using CI
     @Autowired
     public InstructorDAOImpl(EntityManager entityManager){
         this.entityManager=entityManager;
@@ -36,3 +37,17 @@ public class InstructorDAOImpl implements InstructorDAO{
         entityManager.remove(instructor);
     }
 }
+
+/*
+* findInstructorById method : we are fetching Instructor,
+* but with that instructor details object will also be retrieved
+*
+* Because of default behaviour of @OneToOne fetch type is eager
+*
+*
+* deleteInstructorById Method:
+* this will also delete the instructor details object,
+* bcoz of CascadeType.ALL
+*
+* */
+

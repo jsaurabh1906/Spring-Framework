@@ -2,6 +2,7 @@ package com.myapp.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+//annotate the class as entity and map to db table
 @Entity
 @Table(name="instructor_detail")
 public class InstructorDetail {
