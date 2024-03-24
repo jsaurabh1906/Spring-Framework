@@ -29,7 +29,6 @@ public class Instructor {
     @OneToMany(mappedBy = "instructor",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST})  // refers to instructor property in Course class
-
     private List<Course> courses;
     public Instructor() {
     }
@@ -87,6 +86,8 @@ public class Instructor {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    //add convenience methods for bidirectional relationship
     public void add(Course c){
             if(courses == null){
                 courses= new ArrayList<>();

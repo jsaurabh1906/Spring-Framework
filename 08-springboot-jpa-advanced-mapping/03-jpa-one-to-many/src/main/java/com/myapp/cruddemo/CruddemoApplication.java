@@ -27,14 +27,52 @@ public class CruddemoApplication {
 			//deleteInstructorDetail(instructorDAO);
 			//createInstructorWithCourses(instructorDAO);
 
-			//findInstructorWithCourses(instructorDAO);
+			//findInstructorWithCourses(instructorDAO); //tbis method will throw lazyinitialization
 			//findCoursesForInstructor(instructorDAO);
+			//findInstructorWithCoursesJoinFetch(instructorDAO);
 
-			findInstructorWithCoursesJoinFetch(instructorDAO);
+			//updateInstructor(instructorDAO);
+			//updateCourse(instructorDAO);
 
+			//deleteInstructor(instructorDAO); // no update required in thin main method as already updated code in daoimpl
+			deleteCourse(instructorDAO);
 		};
 	}
 
+	private void deleteCourse(InstructorDAO instructorDAO) {
+		int id = 10;
+		System.out.println("deleting the course with id: "+id);
+
+		instructorDAO.deleteCourseById(id);
+		System.out.println("course deleted");
+	}
+
+	private void updateCourse(InstructorDAO instructorDAO) {
+		int id = 10;
+		System.out.println("Finding Course with id: " + id );
+		Course courseToUpdate = instructorDAO.findCourseById(id);
+		System.out.println("Course to update: "+ courseToUpdate);
+		System.out.println("updating the course with id: "+ id);
+		courseToUpdate.setTitle("Enjoy the simpple things");
+
+		instructorDAO.update(courseToUpdate);
+		System.out.println("course updated!!!");
+
+	}
+
+	private void updateInstructor(InstructorDAO instructorDAO){
+
+		int id = 1;
+		// find instructor
+		Instructor i = instructorDAO.findInstructorById(id);
+
+		//update the instructor
+		System.out.println("updating the instructor with id: "+ id);
+		i.setFirstName("Saurabh");
+		instructorDAO.update(i);
+		System.out.println("instructor updated!!!");
+
+	}
 	private void findInstructorWithCoursesJoinFetch(InstructorDAO instructorDAO) {
 		int id=1;
 
@@ -180,3 +218,32 @@ public class CruddemoApplication {
 		System.out.println("Done");
 	}
 }
+
+
+
+/*
+* findInstructorWithCourses(instructorDAO);
+* default fetchType = lazy; for onetomany on courses in Instructor class
+* this method will throw lazyinitialization exception
+* as the courses are of lazy fetch type and also the hibernate session closes
+* so 1 solutioin is to change the fetch type to eager which will fetch courses while fetching instructor
+*
+*
+* ************************************************************************
+* another solution is write a separate method to fetch courses : findCoursesForInstructor(instructorDAO);
+*  which then calls a method from dao
+* Instructor instructor = instructorDAO.findInstructorById(id);
+* List<Course> courses= instructorDAO.findCourseByInstructorId(id);
+*
+* in this still we have to write an extra queery to fetch courses
+*
+* ****************************************************************************
+*
+* another solution is using Join fetch with following steps
+* take a look at findInstructorByIdJoinFetch from dao impl
+* we have used the join in query
+* so Join Fetch works similar to Eager loading
+*
+* and then in this main app we use the same dao method in findInstructorWithCoursesJoinFetch(instructorDAO);
+*
+ */

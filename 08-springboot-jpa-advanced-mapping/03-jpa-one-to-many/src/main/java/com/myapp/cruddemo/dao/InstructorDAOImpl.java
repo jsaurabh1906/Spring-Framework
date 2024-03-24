@@ -32,6 +32,8 @@ public class InstructorDAOImpl implements InstructorDAO{
         return entityManager.find(Instructor.class, theId);
     }
 
+   /*  when only entity is not associated with another entity means no relation
+
     @Override
     @Transactional
     public void deleteInstructorById(int theId) {
@@ -41,6 +43,28 @@ public class InstructorDAOImpl implements InstructorDAO{
         //delete the instructor
         entityManager.remove(instructor);
     }
+
+    */
+
+    // now when we have courses associated with instructor
+    // we need to update this method accordingly
+   @Override
+   @Transactional
+   public void deleteInstructorById(int theId) {
+       //firstly retrive the instructor
+       Instructor instructor=entityManager.find(Instructor.class, theId);
+
+       // get the courses
+       List<Course> courses = instructor.getCourses();
+
+       //break the association of all courses for instructor
+       for(Course c : courses){
+           c.setInstructor(null); //removes the instructor from the courses
+       }
+
+       //delete the instructor and not the associated courses based on cascade types
+       entityManager.remove(instructor);
+   }
 
     @Override
     public InstructorDetail findInstructorDetailById(int theId) {
@@ -76,11 +100,42 @@ public class InstructorDAOImpl implements InstructorDAO{
     @Override
     public Instructor findInstructorByIdJoinFetch(int theId) {
         TypedQuery<Instructor> query = entityManager.createQuery(
-                "select i from Instructor i JOIN FETCH i.courses JOIN FETCH i.instructorDetail where i.id= :data",Instructor.class
+                "select i from Instructor i " +
+                    "JOIN FETCH i.courses " +
+                    "JOIN FETCH i.instructorDetail " +
+                    "where i.id= :data",
+            Instructor.class
         );
         query.setParameter("data", theId);
         Instructor instructor = query.getSingleResult();
 
         return instructor;
     }
+
+    @Override
+    @Transactional
+    public void update(Instructor instructor) {
+        entityManager.merge(instructor); //merge will update the existing entity
+    }
+
+    @Override
+    public Course findCourseById(int id) {
+        return entityManager.find(Course.class, id);
+
+    }
+
+    @Override
+    @Transactional
+    public void update(Course course) {
+        entityManager.merge(course);
+
+    }
+
+  @Override
+  @Transactional
+  public void deleteCourseById(int id) {
+     Course course = entityManager.find(Course.class,id);
+
+     entityManager.remove(course);
+  }
 }
