@@ -13,7 +13,7 @@
   mapped by :
   ![alt text](image-3.png)
 
-## One to Many Mapping
+## One to Many Mapping(Bidirectional)
 
 \*Cascade Delete (avoid mostly)
 ex:
@@ -28,3 +28,15 @@ ex:
 ## Fetch Types for diffferent mappings
 
 ![alt text](image-8.png)
+
+## One to Many Mapping(Unidirectional)
+
+![alt text](image-9.png)
+
+![alt text](image-10.png)
+
+![alt text](image-11.png)
+
+![alt text](image-12.png)
+
+![alt text](image-13.png)
