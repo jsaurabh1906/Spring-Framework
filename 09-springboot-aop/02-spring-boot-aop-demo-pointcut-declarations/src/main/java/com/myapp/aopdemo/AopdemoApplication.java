@@ -26,6 +26,9 @@ public class AopdemoApplication {
 	private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 		//call the business method
 		Account acc1 = new Account();
+		acc1.setName("Saurabh");
+		acc1.setLevel("Platinum");
+		
 		accountDAO.addAccount(acc1); //will match on @Before advice
 
 		accountDAO.addAccount(acc1,true);
