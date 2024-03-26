@@ -3,40 +3,19 @@ package com.myapp.aopdemo.aspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(2)
 public class MyDemoLoggingAspect {
-  //1. create a pointcut declaration
-  @Pointcut("execution(* com.myapp.aopdemo.dao.*.*(..))")
-  private void forDaoPackage(){}
 
-  //create pointcut for getter methods
-  @Pointcut("execution(* com.myapp.aopdemo.dao.*.get*(..))")
-  private void getter(){}
-
-  //create pointcut for setter methods
-  @Pointcut("execution(* com.myapp.aopdemo.dao.*.set*(..))")
-  private void setter(){}
-
-  //combining pointcuts
-  //create pointcut: include package and exclude getter/setter
-  @Pointcut("forDaoPackage() && !(getter() || setter())")
-  private void forDaoPackageWithoutGetterSetter(){}
-  //2. apply pointcut declaration to advice
-
-  //@Before("forDaoPackage()")
-  @Before("forDaoPackageWithoutGetterSetter()")
+  @Before("com.myapp.aopdemo.aspect.AppAopExpressions.forDaoPackageWithoutGetterSetter()")
   public void beforeAddAccountAdvice(){
     System.out.println("\n==========>>>> Executing @Before advice on addAccount()");
   }
 
-  //@Before("forDaoPackage()")
-  @Before("forDaoPackageWithoutGetterSetter()")
-  public void performApiAnalytics(){
-    System.out.println("\n==========>>>> Performing API Analytics");
-  }
 
 }
 
