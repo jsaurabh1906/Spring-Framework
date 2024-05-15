@@ -27,7 +27,7 @@ public class CreateStudentImagesSetDemo {
       images.add("photo2.jpg");
       images.add("photo3.jpg"); //in sets , no duplicates allowed
 
-      //start the object
+      //start the transaction
       session.beginTransaction();
 
       //save the object
