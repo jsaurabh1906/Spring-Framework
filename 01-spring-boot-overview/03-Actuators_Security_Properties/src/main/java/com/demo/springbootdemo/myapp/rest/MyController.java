@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MyController {
+//    Injecting properties for coach.name and team.name
     @Value("${coach.name}")
     private String cname;
 
