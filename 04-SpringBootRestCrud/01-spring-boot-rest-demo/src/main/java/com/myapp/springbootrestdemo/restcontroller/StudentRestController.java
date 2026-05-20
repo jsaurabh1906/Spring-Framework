@@ -2,9 +2,10 @@ package com.myapp.springbootrestdemo.restcontroller;
 
 import com.myapp.springbootrestdemo.entity.Student;
 import jakarta.annotation.PostConstruct;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,26 +14,28 @@ import java.util.List;
 @RequestMapping("/api")
 public class StudentRestController {
 
-    private List<Student>  slist;
+    private List<Student> slist;
 
     //define @PostConstruct to load the students data once..
     @PostConstruct
-    public void loadData(){
-        slist= new ArrayList<>();
+    public void loadData() {
+        slist = new ArrayList<>();
 
-        slist.add(new Student("Saurabh","Jaiswal"));
-        slist.add(new Student("Aditya","Kulkarni"));
-        slist.add(new Student("Vivek","Kumar"));
-        slist.add(new Student("Harshal","Kumar"));
+        slist.add(new Student("Saurabh", "Jaiswal"));
+        slist.add(new Student("Aditya", "Kulkarni"));
+        slist.add(new Student("Vivek", "Kumar"));
+        slist.add(new Student("Harshal", "Kumar"));
     }
+
     @GetMapping("/students")
-    public List<Student> getStudent(){
+    public List<Student> getStudent() {
         return slist;
     }
-    @GetMapping("/students/{sid}")
-    public Student getStudentById(@PathVariable int sid){
 
-        if (sid > slist.size() || sid < 0){
+    @GetMapping("/students/{sid}")
+    public Student getStudentById(@PathVariable int sid) {
+
+        if (sid > slist.size() || sid < 0) {
             throw new StudentNotFoundException("Student Id Not Found" + sid);
         }
 
@@ -43,7 +46,7 @@ public class StudentRestController {
 }
 
 /*
-*  Path Variables
-* /api/students/{studId}   ==> to retrieve single student ||| studId ==> pathVariable
-* ex: api/students/1
-* */
+ *  Path Variables
+ * /api/students/{studId}   ==> to retrieve single student ||| studId ==> pathVariable
+ * ex: api/students/1
+ * */
