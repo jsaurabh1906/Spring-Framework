@@ -7,20 +7,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeDAO employeeDAO;
 
     //inject Employee Dao using CI
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO){
-        employeeDAO=theEmployeeDAO;
+    public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO) {
+        employeeDAO = theEmployeeDAO;
     }
 
     @Override
-    public List<Employee> findAll(){
+    public List<Employee> findAll() {
         return employeeDAO.findAll();
     }
 
@@ -28,6 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Employee findById(int eid) {
         return employeeDAO.findById(eid);
     }
+
     @Transactional
     @Override
     public Employee save(Employee theEmployee) {
