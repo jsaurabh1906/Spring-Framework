@@ -5,11 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-/*
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-*/
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,7 +16,7 @@ public class DemoSecurityConfig {
 
     // for custom table column names , run the script in mysql available in scripts folder 06-setup-spring-security-demo-database-bcrypt-custom-table-names.sql
     @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource){
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         //define query to retrieve a user by username
         // "?" parameter value will be the user name from login form
@@ -50,22 +45,24 @@ public class DemoSecurityConfig {
     }
 */
 
+    // request urls access based on roles
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers(HttpMethod.GET,"/api/employees").hasRole("EMPLOYEE")
-                        .requestMatchers(HttpMethod.GET,"/api/employees/**").hasRole("EMPLOYEE")
-                        .requestMatchers(HttpMethod.POST,"/api/employees").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.PUT,"/api/employees/**").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.DELETE,"/api/employees/**").hasRole("ADMIN")
-                       );
-                //use HTTP basic authentication configuration
+                        .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "/api/employees/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PATCH, "/api/employees/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
+        );
+        //use HTTP basic authentication configuration
         http.httpBasic(Customizer.withDefaults());
 
         //disable Cross site request forgery csrf
         // in general, not required for stateless Rest Api's that use POST.PUT,DELETE
-        http.csrf(csrf->csrf.disable());
+        http.csrf(csrf -> csrf.disable());
 
         return http.build();
     }
@@ -73,7 +70,7 @@ public class DemoSecurityConfig {
 
 
     /*
-
+//    the following code is to store userdetails inMemory
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
 
