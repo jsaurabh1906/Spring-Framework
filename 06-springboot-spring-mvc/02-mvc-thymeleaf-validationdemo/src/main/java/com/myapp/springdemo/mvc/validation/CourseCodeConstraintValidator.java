@@ -5,7 +5,8 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class CourseCodeConstraintValidator implements ConstraintValidator<CourseCode, String> {
 
-   private String coursePrefix;
+    private String coursePrefix;
+
     @Override
     public void initialize(CourseCode theCourseCode) {
         coursePrefix = theCourseCode.value();
@@ -15,8 +16,8 @@ public class CourseCodeConstraintValidator implements ConstraintValidator<Course
     public boolean isValid(String theCode, ConstraintValidatorContext theConstraintValidatorContext) {
 
         boolean result;
-        if(theCode != null)
-            result =  theCode.startsWith(coursePrefix);
+        if (theCode != null)
+            result = theCode.startsWith(coursePrefix);
         else
             result = true;
         return result;

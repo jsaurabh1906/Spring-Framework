@@ -6,8 +6,8 @@ import jakarta.validation.constraints.*;
 public class Customer {
     private String firstName;
 
-    @NotNull(message="Name is required")
-    @Size(min=1, message="is required")
+    @NotNull(message = "Name is required")
+    @Size(min = 1, message = "is required")
     private String lastName = "";
 
     @Min(value = 0, message = "must be greater than or equal to 0")
@@ -15,11 +15,12 @@ public class Customer {
     @NotNull(message = "required!!")
     private Integer freePasses;
 
-    @Pattern(regexp = "^[A-Za-z0-9]{6}", message="only Max 6 chars/digits")
+    @Pattern(regexp = "^[A-Za-z0-9]{6}", message = "only Max 6 chars/digits")
     private String postalCode;
 
     @CourseCode(value = "ABC", message = "must start with ABC")
     private String courseCode;
+
     public String getFirstName() {
         return firstName;
     }

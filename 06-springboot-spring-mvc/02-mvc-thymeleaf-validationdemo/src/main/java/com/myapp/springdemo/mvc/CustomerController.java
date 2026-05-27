@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CustomerController {
 
     @InitBinder
-    public void initBinder(WebDataBinder dataBinder){
+    public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
     //Model allows us to share information between controllers and view pages(thymeleaf)
     @GetMapping("/")
-    public String showForm(Model model){
+    public String showForm(Model model) {
 
         model.addAttribute("customer", new Customer());
         return "customer-form"; //bind with cusstomer-form.html
@@ -31,17 +31,15 @@ public class CustomerController {
     @PostMapping("/processForm")
     public String processForm(
             @Valid @ModelAttribute("customer") Customer customer,
-            BindingResult theBR)
-    {
+            BindingResult theBR) {
 
         System.out.println("Last name: |" + customer.getLastName() + "|");
 
         System.out.println("Binding Results: " + theBR.toString());
 
-        if(theBR.hasErrors()){
+        if (theBR.hasErrors()) {
             return "customer-form";
-        }
-        else{
+        } else {
             return "customer-confirmation";
         }
     }
@@ -49,12 +47,12 @@ public class CustomerController {
 
 
 /*
-*  @Valid : tell spring mvc to perform validation
-*  @ModelAttribute :  read the form data from customer attribute
-*  BindingResult : holds the results of validation
-*
-*  @InitBinder : pre-process all web requests coming into our controller
-*  StringTrimmerEditor :it is defined in Spring API
-*        removes whitespaces, both leading and trailing;
-*        true means trim to null
-*/
+ *  @Valid : tell spring mvc to perform validation
+ *  @ModelAttribute :  read the form data from customer attribute
+ *  BindingResult : holds the results of validation
+ *
+ *  @InitBinder : pre-process all web requests coming into our controller
+ *  StringTrimmerEditor :it is defined in Spring API
+ *        removes whitespaces, both leading and trailing;
+ *        true means trim to null
+ */

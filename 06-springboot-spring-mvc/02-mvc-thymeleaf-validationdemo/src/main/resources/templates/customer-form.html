@@ -16,11 +16,11 @@ where to submit data: th:action="@{/processForm}"
 -->
 <form th:action="@{/processForm}" th:object="${customer}" method="POST">
 
-    First name: <input type="text" th:field="*{firstName}" />
+    First name: <input type="text" th:field="*{firstName}"/>
 
     <br><br>
 
-    Last name (*): <input type="text" th:field="*{lastName}" />
+    Last name (*): <input type="text" th:field="*{lastName}"/>
 
     <!-- Add error message (if present) -->
     <span th:if="${#fields.hasErrors('lastName')}"
@@ -29,7 +29,7 @@ where to submit data: th:action="@{/processForm}"
 
     <br><br>
 
-    Free passes: <input type="text" th:field="*{freePasses}" />
+    Free passes: <input type="text" th:field="*{freePasses}"/>
 
     <!-- Add error message (if present) -->
     <span th:if="${#fields.hasErrors('freePasses')}"
@@ -38,7 +38,7 @@ where to submit data: th:action="@{/processForm}"
 
     <br><br>
 
-    Postal Code: <input type="text" th:field="*{postalCode}" />
+    Postal Code: <input type="text" th:field="*{postalCode}"/>
 
     <!-- Add error message (if present) -->
     <span th:if="${#fields.hasErrors('postalCode')}"
@@ -47,7 +47,7 @@ where to submit data: th:action="@{/processForm}"
 
     <br><br>
 
-    Course Code: <input type="text" th:field="*{courseCode}" />
+    Course Code: <input type="text" th:field="*{courseCode}"/>
 
     <!-- Add error message (if present) -->
     <span th:if="${#fields.hasErrors('courseCode')}"
@@ -56,7 +56,7 @@ where to submit data: th:action="@{/processForm}"
 
     <br><br>
 
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit"/>
 
 </form>
 </body>
