@@ -17,15 +17,15 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     //CI
-    public EmployeeController(EmployeeService theEmployeeService){
-        employeeService=theEmployeeService;
+    public EmployeeController(EmployeeService theEmployeeService) {
+        employeeService = theEmployeeService;
     }
 
     // add mapping for "/list" http://localhost:8080/employees/list
     @GetMapping("/list")
     public String listEmployees(Model theModel) {
         //get data drom database
-        List<Employee> theEmployees= employeeService.findAll();
+        List<Employee> theEmployees = employeeService.findAll();
         // add to the spring model
         theModel.addAttribute("employees", theEmployees);
 
@@ -33,11 +33,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/showFormForAdd")
-    public String showFormForAdd(Model model){
-        Employee emp=new Employee();
-        model.addAttribute("employee",emp);
+    public String showFormForAdd(Model model) {
+        Employee emp = new Employee();
+        model.addAttribute("employee", emp);
         return "employees/employee-form";
     }
+
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("employeeId") int theId,
                                     Model theModel) {
