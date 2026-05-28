@@ -1,0 +1,92 @@
+[
+  {
+    "bookId": "B101",
+    "title": "Spring Boot in Action",
+    "author": "Craig Walls",
+    "isbn": "9781617292545",
+    "publishedYear": 2021,
+    "price": 599.99,
+    "description": "Comprehensive guide to building Spring Boot applications with real-world examples."
+  },
+  {
+    "bookId": "B102",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "isbn": "9780132350884",
+    "publishedYear": 2008,
+    "price": 799.50,
+    "description": "A handbook of agile software craftsmanship and coding best practices."
+  },
+  {
+    "bookId": "B103",
+    "title": "Effective Java",
+    "author": "Joshua Bloch",
+    "isbn": "9780134685991",
+    "publishedYear": 2018,
+    "price": 899.00,
+    "description": "Best practices and advanced techniques for programming in Java."
+  },
+  {
+    "bookId": "B104",
+    "title": "Head First Design Patterns",
+    "author": "Eric Freeman",
+    "isbn": "9780596007126",
+    "publishedYear": 2020,
+    "price": 749.99,
+    "description": "Easy-to-understand introduction to software design patterns."
+  },
+  {
+    "bookId": "B105",
+    "title": "MongoDB: The Definitive Guide",
+    "author": "Kristina Chodorow",
+    "isbn": "9781491954461",
+    "publishedYear": 2019,
+    "price": 650.00,
+    "description": "Detailed guide to MongoDB database development and administration."
+  },
+  {
+    "bookId": "B106",
+    "title": "Java Concurrency in Practice",
+    "author": "Brian Goetz",
+    "isbn": "9780321349606",
+    "publishedYear": 2006,
+    "price": 899.99,
+    "description": "Essential concepts and practical approaches for concurrent programming in Java."
+  },
+  {
+    "bookId": "B107",
+    "title": "Thymeleaf Essentials",
+    "author": "Antonio Fernandez",
+    "isbn": "9781784398736",
+    "publishedYear": 2017,
+    "price": 499.00,
+    "description": "Learn server-side Java templating with Thymeleaf and Spring Boot."
+  },
+  {
+    "bookId": "B108",
+    "title": "Microservices with Spring Boot",
+    "author": "Ranga Rao Karanam",
+    "isbn": "9781788392013",
+    "publishedYear": 2022,
+    "price": 799.00,
+    "description": "Build scalable and distributed microservices using Spring Boot and Spring Cloud."
+  },
+  {
+    "bookId": "B109",
+    "title": "Data Structures and Algorithms in Java",
+    "author": "Robert Lafore",
+    "isbn": "9780672324536",
+    "publishedYear": 2017,
+    "price": 699.99,
+    "description": "Detailed explanation of data structures and algorithms using Java."
+  },
+  {
+    "bookId": "B110",
+    "title": "Docker Deep Dive",
+    "author": "Nigel Poulton",
+    "isbn": "9781521822807",
+    "publishedYear": 2023,
+    "price": 850.00,
+    "description": "Practical guide to Docker containers, images, and orchestration."
+  }
+]
